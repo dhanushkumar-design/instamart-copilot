@@ -1,9 +1,11 @@
 question,expected_doc,retrieved_doc,expected_fact,answer,fact_present
-What delivery time makes a completed order eligible for a full refund?,refund_policy.txt,refund_policy.txt,more than 45 minutes,"If a completed order is delivered in more than 45 minutes, the customer receives a full refund of the order amount.",True
+What delivery time makes a completed order eligible for a full refund?,refund_policy.txt,refund_policy.txt,more than 45 minutes,"If a completed order is delivered in more than 45 minutes, the customer
+  order is delivered in more than 45 minutes, the customer receives a full refund of the order amount.",True
 Who must approve a refund above INR 1000?,refund_policy.txt,refund_policy.txt,human support lead,A refund above INR 1000 must be approved by a human support lead before money is returned.,True
 How many days do I have to raise a refund request?,refund_policy.txt,refund_policy.txt,within 7 days,A refund request must be raised within 7 days of the delivery date.,True
-What is the delivery fee on small orders?,delivery_policy.txt,delivery_policy.txt,INR 25,"A delivery fee of INR 25 is charged on orders below INR 199, and delivery is free on orders of INR 199 or more.",True
-On orders of what value is delivery free?,delivery_policy.txt,delivery_policy.txt,INR 199 or more,"A delivery fee of INR 25 is charged on orders below INR 199, and delivery is free on orders of INR 199 or more.",True
+What is the delivery fee on small orders?,delivery_policy.txt,delivery_policy.txt,INR 25,"A delivery fee of INR 25 is charged on orders below INR 199,
+  of INR 25 is charged on orders below INR 199, and delivery is free on orders of INR 199 or more.",True
+On orders of what value is delivery free?,delivery_policy.txt,delivery_policy.txt,INR 199 or more,"of INR 25 is charged on orders below INR 199, and delivery is free on orders of INR 199 or more.",True
 Why does the electronics delivery need a one time password?,delivery_policy.txt,delivery_policy.txt,one time password,Electronics items are delivered only after the customer shares a one time password with the rider.,True
 Is cash on delivery available for a large order?,payment_policy.txt,payment_policy.txt,INR 2500,Cash on delivery is available only for orders up to INR 2500.,True
 How soon is money returned when a payment fails but is deducted?,payment_policy.txt,payment_policy.txt,48 hours,"If a payment fails but money is deducted, the amount is returned automatically within 48 hours.",True

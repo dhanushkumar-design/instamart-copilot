@@ -1,0 +1,26 @@
+[
+  {
+    "order_id": "ORD-100048",
+    "customer_id": "C0007",
+    "refund_inr": 128.25,
+    "action": "issued",
+    "scenario_id": "S1",
+    "run_id": "b8395c3b6253408f9c6c4944b5988459"
+  },
+  {
+    "order_id": "ORD-100067",
+    "customer_id": "C0008",
+    "refund_inr": 135.0,
+    "action": "issued",
+    "scenario_id": "S2",
+    "run_id": "7f5df6098260496aae8ae4541e0d42cb"
+  },
+  {
+    "order_id": "ORD-100145",
+    "customer_id": "C0016",
+    "refund_inr": 1999.0,
+    "action": "escalated",
+    "scenario_id": "S3",
+    "run_id": "95fb17bf6a4048e2b98b1b0759180b80"
+  }
+]
