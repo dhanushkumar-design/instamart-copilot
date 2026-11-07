@@ -2,6 +2,7 @@
 """Part D: TF-IDF Policy RAG Assistant."""
 
 import re
+
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
@@ -11,12 +12,15 @@ from .foundation import BASE, RAW
 
 
 class PolicyAssistant:
-    def __init__(self):
+    def __init__(self, overlap=10):
         self.chunks = []
 
-        # 40 words per chunk, 10 words overlap
+        # 40-word chunks with configurable overlap
         chunk_size = 40
-        overlap = 10
+
+        if not 0 <= overlap < chunk_size:
+            raise ValueError("overlap must be between 0 and 39")
+
         step = chunk_size - overlap
 
         for path in sorted((BASE / "data/policies").glob("*.txt")):
@@ -24,12 +28,16 @@ class PolicyAssistant:
             words = content.split()
 
             for start in range(0, len(words), step):
+                # Skip tail chunks already covered by the previous chunk
+                if start > 0 and start + overlap >= len(words):
+                    break
+
                 chunk = " ".join(words[start:start + chunk_size])
 
                 if chunk:
                     self.chunks.append((path.name, chunk))
 
-        # TF-IDF Vectorizer
+        # TF-IDF vectorizer
         self.vectorizer = TfidfVectorizer(
             ngram_range=(1, 2),
             stop_words="english"
@@ -69,7 +77,7 @@ class PolicyAssistant:
                 "tokens": 0
             }
 
-        # Prioritize the chunk containing the payment timeline
+        # Prioritize payment timeline context when relevant
         if re.search(
             r"payment fails|money.*deducted",
             question,
@@ -84,7 +92,6 @@ class PolicyAssistant:
                 reverse=True
             )
 
-        # Build policy context
         context = "\n".join(
             f"[{name}] {chunk}"
             for name, chunk, _ in found
@@ -107,15 +114,16 @@ class PolicyAssistant:
             }
         ]
 
-        
         response = mock_llm.chat(messages)
-
         answer_text = response.choices[0].message.content or ""
 
-        # Ensure the payment timeline is included when supported
-        # by the retrieved policy context.
+        # Grounded correction for the payment timeline question
         if (
-            re.search(r"payment fails|money.*deducted", question, re.I)
+            re.search(
+                r"payment fails|money.*deducted",
+                question,
+                re.I
+            )
             and any(
                 name == "payment_policy.txt"
                 and "48 hours" in chunk.lower()
@@ -132,17 +140,6 @@ class PolicyAssistant:
             "answer": answer_text,
             "sources": list(
                 dict.fromkeys(name for name, _, _ in found)
-            ),
-            "tokens": response.usage.total_tokens
-        }
-
-
-        return {
-            "answer": response.choices[0].message.content,
-            "sources": list(
-                dict.fromkeys(
-                    name for name, _, _ in found
-                )
             ),
             "tokens": response.usage.total_tokens
         }

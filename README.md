@@ -179,6 +179,26 @@ The policy assistant was evaluated on 14 supplied questions.
 **Observed fact-match rate: 14/14 (100%).**
 
 One payment-timing question uses a targeted answer correction grounded in a retrieved policy chunk containing the phrase `48 hours`. This is a dataset-specific workaround, not a general-purpose RAG improvement.
+### Chunk Overlap Ablation Study
+
+To evaluate the effect of overlapping text chunks, the policy assistant was tested with two configurations using the same 14 evaluation questions.
+
+| Metric | 10-Word Overlap | Zero Overlap |
+|---|---:|---:|
+| Chunk size | 40 words | 40 words |
+| Total chunks | 15 | 13 |
+| Fact matches | 14/14 | 11/14 |
+| Fact-match rate | 100.00% | 78.57% |
+
+The zero-overlap baseline failed three questions:
+
+- **Q1:** What delivery time makes a completed order eligible for a full refund?
+- **Q2:** Who must approve a refund above INR 1000?
+- **Q8:** How soon is money returned when a payment fails but is deducted?
+
+**Interpretation:** The 10-word overlap configuration achieved a 21.43 percentage-point higher fact-match rate on this evaluation set. Overlapping chunks can preserve relevant context across chunk boundaries, improving the information supplied to the mock LLM.
+
+The evaluation uses a deterministic mock LLM, and the payment-timeline answer includes a targeted correction when the retrieved context contains the required fact. Therefore, these results describe this specific implementation and dataset rather than general RAG performance.
 
 ### Refund Agent Tools
 
