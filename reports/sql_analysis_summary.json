@@ -1,0 +1,69 @@
+{
+  "01_completed_orders": {
+    "rows": 1,
+    "columns": [
+      "completed_orders",
+      "total_revenue"
+    ]
+  },
+  "02_city_revenue": {
+    "rows": 6,
+    "columns": [
+      "city",
+      "completed_orders",
+      "revenue"
+    ]
+  },
+  "03_top_products": {
+    "rows": 10,
+    "columns": [
+      "product_id",
+      "product_name",
+      "completed_orders",
+      "revenue"
+    ]
+  },
+  "04_customer_order_summary": {
+    "rows": 20,
+    "columns": [
+      "customer_id",
+      "city",
+      "completed_orders",
+      "revenue"
+    ]
+  },
+  "05_monthly_revenue_cte": {
+    "rows": 6,
+    "columns": [
+      "month",
+      "completed_orders",
+      "revenue"
+    ]
+  },
+  "06_product_revenue_rank": {
+    "rows": 40,
+    "columns": [
+      "product_id",
+      "product_name",
+      "revenue",
+      "revenue_rank"
+    ]
+  },
+  "07_customer_order_sequence": {
+    "rows": 11110,
+    "columns": [
+      "customer_id",
+      "order_id",
+      "order_ts",
+      "order_number"
+    ]
+  },
+  "pandas_cross_check": {
+    "sql_completed_orders": 11110,
+    "pandas_completed_orders": 11110,
+    "sql_revenue": 2968622.15,
+    "pandas_revenue": 2968622.15,
+    "count_match": true,
+    "revenue_match": true
+  }
+}

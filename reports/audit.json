@@ -1,0 +1,17 @@
+{
+  "raw_rows": {
+    "customers": 1200,
+    "products": 40,
+    "orders": 13084,
+    "tickets": 164
+  },
+  "deduplicated_orders": 12309,
+  "invalid_amounts": 112,
+  "missing_delivery_minutes": 1973,
+  "clean_rows": {
+    "customers": 1200,
+    "products": 40,
+    "orders": 12309,
+    "tickets": 164
+  }
+}

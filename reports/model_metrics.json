@@ -1,0 +1,35 @@
+{
+  "selected_model": "Logistic Regression",
+  "best_threshold": 0.4,
+  "f1": 0.725,
+  "accuracy": 0.725,
+  "precision": 0.5959,
+  "recall": 0.9255,
+  "roc_auc": 0.7617,
+  "lapse_rate": 0.39,
+  "validation_f1": 0.712,
+  "best_parameters": {
+    "C": 0.1,
+    "class_weight": "balanced"
+  },
+  "model_comparison": {
+    "Logistic Regression": {
+      "cv_f1": 0.6778,
+      "validation_f1": 0.712
+    },
+    "Random Forest": {
+      "cv_f1": 0.6948,
+      "validation_f1": 0.7091
+    }
+  },
+  "segment_counts": {
+    "occasional": 421,
+    "high_frequency": 418,
+    "regular": 333,
+    "low_activity": 28
+  },
+  "pca_explained_variance": [
+    0.7879,
+    0.1391
+  ]
+}
